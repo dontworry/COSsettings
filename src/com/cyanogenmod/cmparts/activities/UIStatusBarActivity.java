@@ -38,9 +38,14 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
 
     private ListPreference mStatusBarAmPm;
 
+    private static final String PREF_STATUS_BAR_COMPACT_CARRIER = "pref_status_bar_compact_carrier";
+
+
     private CheckBoxPreference mStatusBarClock;
 
     private CheckBoxPreference mStatusBarCmBattery;
+
+    private CheckBoxPreference mStatusBarCompactCarrier;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,7 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
         PreferenceScreen prefSet = getPreferenceScreen();
 
         mStatusBarClock = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_CLOCK);
+        mStatusBarCompactCarrier = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_COMPACT_CARRIER);
         mStatusBarCmBattery = (CheckBoxPreference) prefSet
                 .findPreference(PREF_STATUS_BAR_CM_BATTERY);
 
@@ -59,6 +65,8 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
                 Settings.System.STATUS_BAR_CLOCK, 1) == 1));
         mStatusBarCmBattery.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.STATUS_BAR_CM_BATTERY, 0) == 1));
+        mStatusBarCompactCarrier.setChecked((Settings.System.getInt(getContentResolver(),
+                Settings.System.STATUS_BAR_COMPACT_CARRIER, 0) == 1));
 
         mStatusBarAmPm = (ListPreference) prefSet.findPreference(PREF_STATUS_BAR_AM_PM);
         int statusBarAmPm = Settings.System.getInt(getContentResolver(),
@@ -86,9 +94,14 @@ public class UIStatusBarActivity extends PreferenceActivity implements OnPrefere
             Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_CLOCK,
                     value ? 1 : 0);
             return true;
-        }else if (preference == mStatusBarCmBattery) {
+        } else if (preference == mStatusBarCmBattery) {
             value = mStatusBarCmBattery.isChecked();
             Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_CM_BATTERY,
+                    value ? 1 : 0);
+            return true;
+        } else if (preference == mStatusBarCompactCarrier) {
+            value = mStatusBarCompactCarrier.isChecked();
+            Settings.System.putInt(getContentResolver(), Settings.System.STATUS_BAR_COMPACT_CARRIER,
                     value ? 1 : 0);
             return true;
         }
