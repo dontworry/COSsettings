@@ -10,15 +10,6 @@
             android:targetClass="com.cyanogenmod.cmparts.activities.ApplicationActivity" />
     </PreferenceScreen>
 
-    <!-- Display Settings -->
-    <PreferenceScreen android:key="display_settings"
-        android:title="@string/display_settings_title_head"
-        android:summary="@string/display_settings_summary_head">
-        <intent android:action="android.intent.action.MAIN"
-            android:targetPackage="com.cyanogenmod.cmparts"
-            android:targetClass="com.cyanogenmod.cmparts.activities.DisplayActivity" />
-    </PreferenceScreen>
-
     <!-- Input Settings -->
     <PreferenceScreen android:key="input_settings"
         android:title="@string/input_settings_title_head" android:summary="@string/input_settings_summary_head">
@@ -55,23 +46,11 @@
 
     <!-- Sound settings -->
     <PreferenceScreen android:key="sound_settings"
-        android:title="@string/sound_settings_title_head" android:summary="@string/sound_settings_summary_head">
+        android:title="@string/sound_settings_title_head" 
+        android:summary="@string/sound_settings_summary_head">
         <intent android:action="android.intent.action.MAIN"
             android:targetPackage="com.cyanogenmod.cmparts"
             android:targetClass="com.cyanogenmod.cmparts.activities.SoundActivity" />
     </PreferenceScreen>
-
-    <PreferenceScreen android:key="changelog"
-       android:title="@string/changelog_title">
-       <intent android:action="android.intent.action.MAIN"
-       android:targetPackage="com.cyanogenmod.cmparts"
-       android:targetClass="com.cyanogenmod.cmparts.activities.ChangeLog" />
-    </PreferenceScreen>
-
-    <!-- Possible future Use: Pedlar <PreferenceScreen android:key="battery_tester" 
-        android:title="Test Battery" android:summary="Battery Drain Tester"> <intent 
-        android:action="android.intent.action.MAIN" android:targetPackage="com.cyanogenmod.cmparts" 
-        android:targetClass="com.cyanogenmod.cmparts.activities.BatteryTester" /> 
-        </PreferenceScreen> -->
-
 </PreferenceScreen>
+

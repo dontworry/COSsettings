@@ -4,18 +4,38 @@
     <!-- General settings -->
     <PreferenceCategory android:key="general_category"
         android:title="@string/general_title">
-
-        <CheckBoxPreference android:key="pref_move_all_apps"
+ 
+    <!-- Move Applications -->
+    <CheckBoxPreference android:key="pref_move_all_apps"
             android:title="@string/pref_move_all_apps_title"
             android:summary="@string/pref_move_all_apps_summary" />
+    </PreferenceCategory>
 
-        <Preference
+    <!-- Display Settings -->
+    <PreferenceScreen android:key="display_settings"
+        android:title="@string/display_settings_title_head"
+        android:summary="@string/display_settings_summary_head">
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="com.cyanogenmod.cmparts"
+            android:targetClass="com.cyanogenmod.cmparts.activities.DisplayActivity" />
+    </PreferenceScreen>
+        
+    <!-- Phone googles -->
+    <PreferenceScreen 
             android:key="phone_goggles_settings"
             android:title="@string/title_phone_goggles"
             android:summary="@string/summary_phone_goggles">
             <intent android:action="android.intent.action.MAIN"
                     android:targetPackage="com.cyanogenmod.cmparts"
                     android:targetClass="com.cyanogenmod.cmparts.activities.PhoneGogglesActivity" />
-        </Preference>
-    </PreferenceCategory>
+   </PreferenceScreen>
+
+   <!-- Changelog -->
+   <PreferenceScreen android:key="changelog"
+       android:title="@string/changelog_title"
+       android:summary="@string/summary_changelog">
+       <intent android:action="android.intent.action.MAIN"
+       android:targetPackage="com.cyanogenmod.cmparts"
+       android:targetClass="com.cyanogenmod.cmparts.activities.ChangeLog" />
+    </PreferenceScreen>    
 </PreferenceScreen>

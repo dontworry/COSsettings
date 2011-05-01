@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Generic -->
-    <string name="app_name">COS settings</string>
+    <string name="app_name" translatable="false">COS settings</string>
 
     <!--  Primary Screen Settings -->
-    <string name="application_settings_title_head">Application</string>
-    <string name="application_settings_title_subhead">Application settings</string>
-    <string name="application_settings_summary_head">Application moving, install location, communication filtering</string>
+    <string name="application_settings_title_head" translatable="false">Misc</string>
+    <string name="application_settings_title_subhead" translatable="false">Misc settings</string>
+    <string name="application_settings_summary_head" translatable="false">Application moving,communication filtering, display, changelog</string>
     <string name="display_settings_title_head">Display</string>
     <string name="display_settings_title_subhead">Display settings</string>
     <string name="display_settings_summary_head">Display animations, rotation, timeouts</string>
@@ -559,4 +559,6 @@
     <string name="cpu_max_freq_summary">Maximum CPU frequency\nCurrently: %s</string>
     <string name="cpu_set_on_boot">Set on boot</string>
     <string name="cpu_set_on_boot_summary">Restore CPU settings on boot</string>
+
+    <string name="summary_changelog" translatable="false">COS Changes</string>
 </resources>
