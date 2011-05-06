@@ -10,14 +10,6 @@
             android:title="@string/pref_move_all_apps_title"
             android:summary="@string/pref_move_all_apps_summary" />
     </PreferenceCategory>
-  
-    <PreferenceScreen android:key="permissions_settings"
-        android:title="@string/permissions_settings_title_head"
-        android:summary="@string/permissions_settings_title_subhead">
-        <intent android:action="android.intent.action.MAIN"
-        android:targetPackage="com.cyanogenmod.cmparts"
-        android:targetClass="com.cyanogenmod.cmparts.activities.PermissionsActivity" />
-   </PreferenceScreen>
 
     <!-- Display Settings -->
     <PreferenceScreen android:key="display_settings"
