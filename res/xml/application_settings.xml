@@ -10,6 +10,12 @@
             android:title="@string/pref_move_all_apps_title"
             android:summary="@string/pref_move_all_apps_summary" />
     </PreferenceCategory>
+ 
+    <!-- Enable permissions managment -->
+    <CheckBoxPreference android:key="enable_permissions_managment"
+            android:title="@string/perm_enable_managment"
+            android:summary="@string/perm_enable_managment_summary" />
+
 
     <!-- Display Settings -->
     <PreferenceScreen android:key="display_settings"
@@ -30,24 +36,6 @@
                     android:targetClass="com.cyanogenmod.cmparts.activities.PhoneGogglesActivity" />
    </PreferenceScreen>
   
-   <!-- Tablet Tweaks -->
-   <PreferenceScreen android:key="tablet_settings"
-        android:title="@string/tablet_tweaks_title_head"
-        android:summary="@string/tablet_tweaks_summary_head">
-        <intent android:action="android.intent.action.MAIN"
-            android:targetPackage="com.cyanogenmod.cmparts"
-            android:targetClass="com.cyanogenmod.cmparts.activities.TabletTweaksActivity" />
-    </PreferenceScreen>
-
-   <!-- Permissions -->
-   <PreferenceScreen android:key="permissions_settings"
-       android:title="@string/permissions_settings_title_head"
-       android:summary="@string/permissions_settings_title_subhead">
-       <intent android:action="android.intent.action.MAIN"
-           android:targetPackage="com.cyanogenmod.cmparts"
-           android:targetClass="com.cyanogenmod.cmparts.activities.PermissionsActivity" />
-   </PreferenceScreen>
-
    <!-- Changelog -->
    <PreferenceScreen android:key="changelog"
        android:title="@string/changelog_title"
