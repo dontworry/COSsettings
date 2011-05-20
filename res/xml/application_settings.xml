@@ -11,11 +11,13 @@
             android:summary="@string/pref_move_all_apps_summary" />
     </PreferenceCategory>
  
-    <!-- Enable permissions managment -->
-    <CheckBoxPreference android:key="enable_permissions_managment"
-            android:title="@string/perm_enable_managment"
-            android:summary="@string/perm_enable_managment_summary" />
-
+    <PreferenceScreen android:key="permissions_settings"
+        android:title="@string/permissions_settings_title_head"
+        android:summary="@string/permissions_settings_title_subhead">
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="com.cyanogenmod.cmparts"
+            android:targetClass="com.cyanogenmod.cmparts.activities.PermissionsActivity" />
+    </PreferenceScreen>
 
     <!-- Display Settings -->
     <PreferenceScreen android:key="display_settings"
