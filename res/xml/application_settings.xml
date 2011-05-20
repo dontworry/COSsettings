@@ -29,6 +29,14 @@
                     android:targetPackage="com.cyanogenmod.cmparts"
                     android:targetClass="com.cyanogenmod.cmparts.activities.PhoneGogglesActivity" />
    </PreferenceScreen>
+   <!-- Permissions -->
+   <PreferenceScreen android:key="permissions_settings"
+       android:title="@string/permissions_settings_title_head"
+       android:summary="@string/permissions_settings_title_subhead">
+       <intent android:action="android.intent.action.MAIN"
+           android:targetPackage="com.cyanogenmod.cmparts"
+           android:targetClass="com.cyanogenmod.cmparts.activities.PermissionsActivity" />
+   </PreferenceScreen>
 
    <!-- Changelog -->
    <PreferenceScreen android:key="changelog"
