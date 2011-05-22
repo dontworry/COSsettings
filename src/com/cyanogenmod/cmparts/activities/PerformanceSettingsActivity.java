@@ -75,11 +75,7 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
 
     private static final String PURGEABLE_ASSETS_DEFAULT = "0";
 
-    private static final String LOCK_HOME_PREF = "pref_lock_home";
-
     private static final String LOCK_MMS_PREF = "pref_lock_mms";
-
-    private static final int LOCK_HOME_DEFAULT = 0;
 
     private static final int LOCK_MMS_DEFAULT = 0;
 
@@ -90,8 +86,6 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
     private CheckBoxPreference mUseDitheringPref;
 
     private CheckBoxPreference mPurgeableAssetsPref;
-
-    private CheckBoxPreference mLockHomePref;
 
     private CheckBoxPreference mLockMmsPref;
 
@@ -141,10 +135,6 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
                 SystemProperties.get(HEAPSIZE_PROP, HEAPSIZE_DEFAULT)));
         mHeapsizePref.setOnPreferenceChangeListener(this);
 
-        mLockHomePref = (CheckBoxPreference) prefSet.findPreference(LOCK_HOME_PREF);
-        mLockHomePref.setChecked(Settings.System.getInt(getContentResolver(),
-                Settings.System.LOCK_HOME_IN_MEMORY, LOCK_HOME_DEFAULT) == 1);
-
         mLockMmsPref = (CheckBoxPreference) prefSet.findPreference(LOCK_MMS_PREF);
         mLockMmsPref.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.LOCK_MMS_IN_MEMORY, LOCK_MMS_DEFAULT) == 1);
@@ -178,12 +168,6 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
         if (preference == mPurgeableAssetsPref) {
             SystemProperties.set(PURGEABLE_ASSETS_PERSIST_PROP,
                     mPurgeableAssetsPref.isChecked() ? "1" : "0");
-            return true;
-        }
-
-        if (preference == mLockHomePref) {
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.LOCK_HOME_IN_MEMORY, mLockHomePref.isChecked() ? 1 : 0);
             return true;
         }
 
