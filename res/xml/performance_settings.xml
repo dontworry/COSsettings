@@ -29,9 +29,9 @@
             android:title="@string/pref_purgeable_assets_title"
             android:summary="@string/pref_purgeable_assets_summary" />
 
-        <CheckBoxPreference android:key="pref_lock_home"
+           <!-- <CheckBoxPreference android:key="pref_lock_home"
             android:title="@string/pref_lock_home_title"
-            android:summary="@string/pref_lock_home_summary" />
+            android:summary="@string/pref_lock_home_summary" /> -->
 
         <CheckBoxPreference android:key="pref_lock_mms"
             android:title="@string/pref_lock_mms_title" android:summary="@string/pref_lock_mms_summary" />
