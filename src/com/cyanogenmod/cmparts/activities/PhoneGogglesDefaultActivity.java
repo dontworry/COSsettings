@@ -32,7 +32,7 @@ implements OnPreferenceChangeListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String appName = getString(R.string.title_phone_goggles_default);
+        String appName = "Default Settings";
         String appId = "default";
 
         addPreferencesFromResource(R.xml.phone_goggles_default_settings);
