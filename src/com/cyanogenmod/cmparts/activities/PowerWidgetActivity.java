@@ -20,7 +20,7 @@ import com.android.internal.telephony.Phone;
 import com.cyanogenmod.cmparts.R;
 import com.cyanogenmod.cmparts.utils.PowerWidgetUtil;
 
-import android.net.wimax.WimaxHelper;
+
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
