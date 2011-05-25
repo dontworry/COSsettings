@@ -27,7 +27,7 @@
             android:targetPackage="com.cyanogenmod.cmparts"
             android:targetClass="com.cyanogenmod.cmparts.activities.DisplayActivity" />
     </PreferenceScreen>
- 
+
    <!-- Changelog -->
    <PreferenceScreen android:key="changelog"
        android:title="@string/changelog_title"

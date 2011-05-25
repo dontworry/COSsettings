@@ -52,6 +52,5 @@
             android:targetPackage="com.cyanogenmod.cmparts"
             android:targetClass="com.cyanogenmod.cmparts.activities.SoundActivity" />
     </PreferenceScreen>
-
 </PreferenceScreen>
 
