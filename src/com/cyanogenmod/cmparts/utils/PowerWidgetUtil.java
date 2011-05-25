@@ -19,7 +19,6 @@ package com.cyanogenmod.cmparts.utils;
 import com.cyanogenmod.cmparts.R;
 
 import android.content.Context;
-import android.net.wimax.WimaxHelper;
 import android.provider.Settings;
 
 import java.util.ArrayList;
@@ -105,10 +104,6 @@ public class PowerWidgetUtil {
         String buttons = Settings.System.getString(context.getContentResolver(), Settings.System.WIDGET_BUTTONS);
         if (buttons == null) {
             buttons = BUTTONS_DEFAULT;
-            // Add the WiMAX button if it's supported
-            if (WimaxHelper.isWimaxSupported(context)) {
-                buttons += BUTTON_DELIMITER + BUTTON_WIMAX;
-            }
             // And the flashlight too if available
             if (context.getResources().getBoolean(R.bool.has_led_flash)) {
                 buttons += BUTTON_DELIMITER + BUTTON_FLASHLIGHT;

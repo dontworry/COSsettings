@@ -10,14 +10,6 @@
             android:targetClass="com.cyanogenmod.cmparts.activities.ApplicationActivity" />
     </PreferenceScreen>
 
-    <!-- Input Settings -->
-    <PreferenceScreen android:key="input_settings"
-        android:title="@string/input_settings_title_head" android:summary="@string/input_settings_summary_head">
-        <intent android:action="android.intent.action.MAIN"
-            android:targetPackage="com.cyanogenmod.cmparts"
-            android:targetClass="com.cyanogenmod.cmparts.activities.InputActivity" />
-    </PreferenceScreen>
-
     <!-- Interface Settings -->
     <PreferenceScreen android:key="ui_settings"
         android:title="@string/interface_settings_title_head" android:summary="@string/interface_settings_summary_head">
@@ -42,15 +34,6 @@
         <intent android:action="android.intent.action.MAIN"
             android:targetPackage="com.cyanogenmod.cmparts"
             android:targetClass="com.cyanogenmod.cmparts.activities.PerformanceSettingsActivity" />
-    </PreferenceScreen>
-
-    <!-- Sound settings -->
-    <PreferenceScreen android:key="sound_settings"
-        android:title="@string/sound_settings_title_head" 
-        android:summary="@string/sound_settings_summary_head">
-        <intent android:action="android.intent.action.MAIN"
-            android:targetPackage="com.cyanogenmod.cmparts"
-            android:targetClass="com.cyanogenmod.cmparts.activities.SoundActivity" />
     </PreferenceScreen>
 </PreferenceScreen>
 
