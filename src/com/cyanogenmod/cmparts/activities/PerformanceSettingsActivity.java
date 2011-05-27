@@ -37,12 +37,6 @@ import java.io.File;
  */
 public class PerformanceSettingsActivity extends PreferenceActivity implements Preference.OnPreferenceChangeListener {
 
-    private static final String COMPCACHE_PREF = "zram_size";
-
-    private static final String COMPCACHE_PERSIST_PROP = "persist.service.compcache";
-
-    private static final String COMPCACHE_DEFAULT = SystemProperties.get("persist.zram.size");
-   
     private static final String GENERAL_CATEGORY = "general_category";
 
     private static final String JIT_PREF = "pref_jit_mode";
@@ -66,8 +60,6 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
     private static final String LOCK_MMS_PREF = "pref_lock_mms";
 
     private static final int LOCK_MMS_DEFAULT = 0;
-   
-    private ListPreference mCompcachePref;
 
     private CheckBoxPreference mJitPref;
 
@@ -76,8 +68,6 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
     private ListPreference mHeapsizePref;
 
     private AlertDialog alertDialog;
-
-    private int swapAvailable = -1;
 
 
     @Override
@@ -90,16 +80,6 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
         PreferenceScreen prefSet = getPreferenceScreen();
         
         PreferenceCategory generalCategory = (PreferenceCategory)prefSet.findPreference(GENERAL_CATEGORY);
-
-        mCompcachePref = (ListPreference) prefSet.findPreference(COMPCACHE_PREF);
-        if (isSwapAvailable()) {
-            if (SystemProperties.get(COMPCACHE_PERSIST_PROP) == "1")
-                SystemProperties.set(COMPCACHE_PERSIST_PROP, COMPCACHE_DEFAULT);
-            mCompcachePref.setValue(SystemProperties.get(COMPCACHE_PERSIST_PROP, COMPCACHE_DEFAULT));
-            mCompcachePref.setOnPreferenceChangeListener(this);
-        } else {
-            generalCategory.removePreference(mCompcachePref);
-        }
 
         mJitPref = (CheckBoxPreference) prefSet.findPreference(JIT_PREF);
         String jitMode = SystemProperties.get(JIT_PERSIST_PROP,
@@ -153,24 +133,8 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
                 return true;
             }
         }
-        if (preference == mCompcachePref) {
-            if (newValue != null) {
-                SystemProperties.set(COMPCACHE_PERSIST_PROP, (String)newValue);
-                return true;
-            }
-        }
 
         return false;
     }
-
-    /**
-     * Check if swap support is available on the system
-     */
-       private boolean isSwapAvailable() {
-           if (swapAvailable < 0) {
-              swapAvailable = new File("/proc/swaps").exists() ? 1 : 0;
-           }
-           return swapAvailable > 0;
-       }
 
 }
