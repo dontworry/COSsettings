@@ -5,16 +5,9 @@
     <PreferenceCategory android:key="general_category"
         android:title="@string/general_title">
 
-        <CheckBoxPreference android:key="pref_move_all_apps"
+          <CheckBoxPreference android:key="pref_move_all_apps"
             android:title="@string/pref_move_all_apps_title"
             android:summary="@string/pref_move_all_apps_summary" />
-
-        <ListPreference android:key="pref_install_location"
-            android:dialogTitle="@string/pref_install_location_title"
-            android:title="@string/pref_install_location_title"
-            android:summary="@string/pref_install_location_summary"
-            android:entries="@array/entries_install_location"
-            android:entryValues="@array/values_install_location" />
 
         <CheckBoxPreference android:key="enable_permissions_management"
             android:title="@string/perm_enable_management"
@@ -29,5 +22,12 @@
                     android:targetClass="com.cyanogenmod.cmparts.activities.PhoneGogglesActivity" />
         </Preference>
 
+        <!-- Change Log -->
+        <PreferenceScreen android:key="changelog"
+            android:title="@string/changelog_title">
+            <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.cyanogenmod.cmparts"
+                android:targetClass="com.cyanogenmod.cmparts.activities.ChangeLog" />
+        </PreferenceScreen>
     </PreferenceCategory>
 </PreferenceScreen>

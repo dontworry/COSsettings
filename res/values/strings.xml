@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Generic -->
-    <string name="app_name">CyanogenMod settings</string>
+    <string name="app_name">COS Settings</string>
 
     <!--  Primary Screen Settings -->
-    <string name="application_settings_title_head">Application</string>
-    <string name="application_settings_title_subhead">Application settings</string>
-    <string name="application_settings_summary_head">Application moving, install location, communication filtering</string>
+    <string name="application_settings_title_head">Misc</string>
+    <string name="application_settings_title_subhead">Misc settings</string>
+    <string name="application_settings_summary_head">Application moving, permissions, communication filtering, changelog</string>
     <string name="display_settings_title_head">Display</string>
     <string name="display_settings_title_subhead">Display settings</string>
     <string name="display_settings_summary_head">Display animations, rotation, timeouts</string>
@@ -611,7 +611,7 @@
     <!-- Permissions Management Settings strings -->
     <string name="perm_enable_management">Permission management</string>
     <string name="perm_enable_management_summary">Enable application permissions management</string>
-    <string name="perm_enable_warning_message">Warning!\nRevoking most permissions will most likely cause applications to malfunction. If an application with revoked permissions force-closes please grant the expected permissions or don\'t use the application.\nPlease DO NOT send bug reports to Cyanogenmod if an application with revoked permissions is not working as expected!</string>
+    <string name="perm_enable_warning_message">Warning!\nRevoking most permissions will most likely cause applications to malfunction. If an application with revoked permissions force-closes please grant the expected permissions or don\'t use the application.\nPlease DO NOT send bug reports to COS if an application with revoked permissions is not working as expected!</string>
     <string name="perm_enable_warning_title">Are you sure?</string>
 
 </resources>

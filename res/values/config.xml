@@ -11,4 +11,11 @@
 
     <!-- LED Flashlight -->
     <bool name="has_led_flash">false</bool>
+
+    <integer name="pref_status_bar_am_pm">2</integer>
+    <bool name="pref_move_all_apps">true</bool> 
+    <bool name="pref_status_bar_compact_carrier">true</bool> 
+    <bool name="pref_status_bar_cm_battery">true</bool> 
+    <integer name="pref_in_call_style">1</integer>
+    <integer name="pref_lockscreen_style">1</integer>
 </resources>

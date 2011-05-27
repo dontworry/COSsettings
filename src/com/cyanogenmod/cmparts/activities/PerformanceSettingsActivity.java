@@ -37,12 +37,6 @@ import java.io.File;
  */
 public class PerformanceSettingsActivity extends PreferenceActivity implements Preference.OnPreferenceChangeListener {
 
-    private static final String COMPCACHE_PREF = "pref_compcache_size";
-
-    private static final String COMPCACHE_PERSIST_PROP = "persist.service.compcache";
-
-    private static final String COMPCACHE_DEFAULT = SystemProperties.get("ro.compcache.default");
-
     private static final String GENERAL_CATEGORY = "general_category";
 
     private static final String JIT_PREF = "pref_jit_mode";
@@ -63,43 +57,17 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
 
     private static final String HEAPSIZE_DEFAULT = "16m";
 
-    private static final String USE_DITHERING_PREF = "pref_use_dithering";
-
-    private static final String USE_DITHERING_PERSIST_PROP = "persist.sys.use_dithering";
-    
-    private static final String USE_DITHERING_DEFAULT = "1";
-
-    private static final String PURGEABLE_ASSETS_PREF = "pref_purgeable_assets";
-
-    private static final String PURGEABLE_ASSETS_PERSIST_PROP = "persist.sys.purgeable_assets";
-
-    private static final String PURGEABLE_ASSETS_DEFAULT = "0";
-
-    private static final String LOCK_HOME_PREF = "pref_lock_home";
-
     private static final String LOCK_MMS_PREF = "pref_lock_mms";
-
-    private static final int LOCK_HOME_DEFAULT = 0;
 
     private static final int LOCK_MMS_DEFAULT = 0;
 
-    private ListPreference mCompcachePref;
-
     private CheckBoxPreference mJitPref;
-
-    private CheckBoxPreference mUseDitheringPref;
-
-    private CheckBoxPreference mPurgeableAssetsPref;
-
-    private CheckBoxPreference mLockHomePref;
 
     private CheckBoxPreference mLockMmsPref;
 
     private ListPreference mHeapsizePref;
 
     private AlertDialog alertDialog;
-
-    private int swapAvailable = -1;
 
 
     @Override
@@ -113,37 +81,15 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
         
         PreferenceCategory generalCategory = (PreferenceCategory)prefSet.findPreference(GENERAL_CATEGORY);
 
-        mCompcachePref = (ListPreference) prefSet.findPreference(COMPCACHE_PREF);
-        if (isSwapAvailable()) {
-	    if (SystemProperties.get(COMPCACHE_PERSIST_PROP) == "1")
-                SystemProperties.set(COMPCACHE_PERSIST_PROP, COMPCACHE_DEFAULT);
-            mCompcachePref.setValue(SystemProperties.get(COMPCACHE_PERSIST_PROP, COMPCACHE_DEFAULT));
-            mCompcachePref.setOnPreferenceChangeListener(this);
-        } else {
-            generalCategory.removePreference(mCompcachePref);
-        }
-
         mJitPref = (CheckBoxPreference) prefSet.findPreference(JIT_PREF);
         String jitMode = SystemProperties.get(JIT_PERSIST_PROP,
                 SystemProperties.get(JIT_PROP, JIT_ENABLED));
         mJitPref.setChecked(JIT_ENABLED.equals(jitMode));
 
-        mUseDitheringPref = (CheckBoxPreference) prefSet.findPreference(USE_DITHERING_PREF);
-        String useDithering = SystemProperties.get(USE_DITHERING_PERSIST_PROP, USE_DITHERING_DEFAULT);
-        mUseDitheringPref.setChecked("1".equals(useDithering));
-
-        mPurgeableAssetsPref = (CheckBoxPreference) prefSet.findPreference(PURGEABLE_ASSETS_PREF);
-        String purgeableAssets = SystemProperties.get(PURGEABLE_ASSETS_PERSIST_PROP, PURGEABLE_ASSETS_DEFAULT);
-        mPurgeableAssetsPref.setChecked("1".equals(purgeableAssets));
-
         mHeapsizePref = (ListPreference) prefSet.findPreference(HEAPSIZE_PREF);
         mHeapsizePref.setValue(SystemProperties.get(HEAPSIZE_PERSIST_PROP,
                 SystemProperties.get(HEAPSIZE_PROP, HEAPSIZE_DEFAULT)));
         mHeapsizePref.setOnPreferenceChangeListener(this);
-
-        mLockHomePref = (CheckBoxPreference) prefSet.findPreference(LOCK_HOME_PREF);
-        mLockHomePref.setChecked(Settings.System.getInt(getContentResolver(),
-                Settings.System.LOCK_HOME_IN_MEMORY, LOCK_HOME_DEFAULT) == 1);
 
         mLockMmsPref = (CheckBoxPreference) prefSet.findPreference(LOCK_MMS_PREF);
         mLockMmsPref.setChecked(Settings.System.getInt(getContentResolver(),
@@ -171,24 +117,6 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
             return true;
         }
 
-        if (preference == mUseDitheringPref) {
-            SystemProperties.set(USE_DITHERING_PERSIST_PROP,
-                    mUseDitheringPref.isChecked() ? "1" : "0");
-            return true;
-        }
-
-        if (preference == mPurgeableAssetsPref) {
-            SystemProperties.set(PURGEABLE_ASSETS_PERSIST_PROP,
-                    mPurgeableAssetsPref.isChecked() ? "1" : "0");
-            return true;
-        }
-
-        if (preference == mLockHomePref) {
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.LOCK_HOME_IN_MEMORY, mLockHomePref.isChecked() ? 1 : 0);
-            return true;
-        }
-
         if (preference == mLockMmsPref) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.LOCK_MMS_IN_MEMORY, mLockMmsPref.isChecked() ? 1 : 0);
@@ -206,24 +134,7 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
             }
         }
 
-        if (preference == mCompcachePref) {
-            if (newValue != null) {
-                SystemProperties.set(COMPCACHE_PERSIST_PROP, (String)newValue);
-                return true;
-	    }
-        }
-
         return false;
-    }
-
-    /**
-     * Check if swap support is available on the system
-     */
-    private boolean isSwapAvailable() {
-        if (swapAvailable < 0) {
-            swapAvailable = new File("/proc/swaps").exists() ? 1 : 0;
-        }
-        return swapAvailable > 0;
     }
 
 }

@@ -40,8 +40,6 @@ import android.widget.Button;
 
 public class ApplicationActivity extends PreferenceActivity implements OnPreferenceChangeListener {
 
-    private static final String INSTALL_LOCATION_PREF = "pref_install_location";
-
     private static final String MOVE_ALL_APPS_PREF = "pref_move_all_apps";
 
     private static final String ENABLE_PERMISSIONS_MANAGEMENT = "enable_permissions_management";
@@ -57,8 +55,6 @@ public class ApplicationActivity extends PreferenceActivity implements OnPrefere
     private final static int NO=2;
 
     private CheckBoxPreference mMoveAllAppsPref;
-
-    private ListPreference mInstallLocationPref;
 
     private CheckBoxPreference mEnableManagement;
 
@@ -77,16 +73,6 @@ public class ApplicationActivity extends PreferenceActivity implements OnPrefere
         addPreferencesFromResource(R.xml.application_settings);
 
         PreferenceScreen prefSet = getPreferenceScreen();
-
-        mInstallLocationPref = (ListPreference) prefSet.findPreference(INSTALL_LOCATION_PREF);
-        String installLocation = "0";
-        try {
-            installLocation = String.valueOf(mPm.getInstallLocation());
-        } catch (RemoteException e) {
-            Log.e(LOG_TAG, "Unable to get default install location!", e);
-        }
-        mInstallLocationPref.setValue(installLocation);
-        mInstallLocationPref.setOnPreferenceChangeListener(this);
 
         mMoveAllAppsPref = (CheckBoxPreference) prefSet.findPreference(MOVE_ALL_APPS_PREF);
         mMoveAllAppsPref.setChecked(Settings.Secure.getInt(getContentResolver(),
@@ -110,16 +96,7 @@ public class ApplicationActivity extends PreferenceActivity implements OnPrefere
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mInstallLocationPref) {
-            if (newValue != null) {
-                try {
-                    mPm.setInstallLocation(Integer.valueOf((String)newValue));
-                    return true;
-                } catch (RemoteException e) {
-                    Log.e(LOG_TAG, "Unable to get default install location!", e);
-                }
-            }
-        } else if (preference == mEnableManagement) {
+       if (preference == mEnableManagement) {
             //final boolean value = mEnableManagement.isChecked();
             if (((Boolean)newValue).booleanValue()) {
                 runOnUiThread(new Runnable() {
