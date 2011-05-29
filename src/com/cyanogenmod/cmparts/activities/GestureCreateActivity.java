@@ -16,16 +16,13 @@
 
 package com.cyanogenmod.cmparts.activities;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.cyanogenmod.cmparts.R;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.Intent.ShortcutIconResource;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.gesture.Gesture;
 import android.gesture.GestureLibrary;
 import android.gesture.GestureOverlayView;
@@ -34,15 +31,11 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.Button;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemSelectedListener;
 
-import com.cyanogenmod.cmparts.R;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GestureCreateActivity extends Activity {
     private static final float LENGTH_THRESHOLD = 120.0f;
@@ -53,21 +46,11 @@ public class GestureCreateActivity extends Activity {
 
     private static final int REQUEST_CREATE_SHORTCUT = 3;
 
-    // must correspond with the @array/pref_lockscreen_gesture_action_entries
-    private static final int ACTION_POSITION_UNLOCK = 0;
-    private static final int ACTION_POSITION_SOUND = 1;
-    private static final int ACTION_POSITION_SHORTCUT = 2;
-    private static final int ACTION_POSITION_FLASHLIGHT = 3;
-
     private Gesture mGesture;
 
     private View mDoneButton;
 
-    private Spinner mActionPicker;
-
-    private TextView mDrawLabel;
-
-    private CheckBox mRunInBackground;
+    private Button mShortcutButton;
 
     private String mUri;
 
@@ -80,30 +63,7 @@ public class GestureCreateActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gesture_create);
         mDoneButton = findViewById(R.id.done);
-        mDrawLabel = (TextView) findViewById(R.id.gestures_draw_label);
-        mRunInBackground = (CheckBox) findViewById(R.id.gestures_run_in_background);
-        mActionPicker = (Spinner) findViewById(R.id.action_picker);
-        mActionPicker.setOnItemSelectedListener(new OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case ACTION_POSITION_UNLOCK:
-                        pickUnlockOnly();
-                        break;
-                    case ACTION_POSITION_SOUND:
-                        pickSoundOnly();
-                        break;
-                    case ACTION_POSITION_SHORTCUT:
-                        pickShortcut();
-                        break;
-                    case ACTION_POSITION_FLASHLIGHT:
-                        pickFlashlight();
-                        break;
-                }
-            }
-
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+        mShortcutButton = (Button) findViewById(R.id.shortcut_picker);
         GestureOverlayView overlay = (GestureOverlayView) findViewById(R.id.gestures_overlay);
         overlay.addOnGestureListener(new GesturesProcessor());
         // Remove flashlight button if Torch app isn't on the phone
@@ -111,17 +71,8 @@ public class GestureCreateActivity extends Activity {
         List<ResolveInfo> l = pm.queryBroadcastReceivers(new Intent(
                 "net.cactii.flash2.TOGGLE_FLASHLIGHT"), 0);
         if (l.isEmpty()) {
-            // Get the original array
-            CharSequence entries[] = getResources().getStringArray(R.array.pref_lockscreen_gesture_action_entries);
-            // Create new array without the last item (without the flashlight)
-            CharSequence entriesShort[] = new String[entries.length-1];
-            for (int i = 0; i < entries.length-1; i++) {
-                entriesShort[i] = entries[i];
-            }
-            ArrayAdapter<CharSequence> spinnerArrayAdapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, entriesShort);
-            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            // Set new adapter
-            mActionPicker.setAdapter(spinnerArrayAdapter);
+            Button flashlight = (Button) findViewById(R.id.flashlight_pick);
+            flashlight.setVisibility(View.GONE);
         }
 
         mGestureSensitivity = Settings.System.getInt(getContentResolver(),
@@ -162,10 +113,6 @@ public class GestureCreateActivity extends Activity {
                 return;
             }
 
-            if (mRunInBackground.isChecked()) {
-                mUri += "___BACKGROUND";
-            }
-
             final GestureLibrary store = GestureListActivity.getStore();
             store.addGesture(mUri, mGesture);
             store.save();
@@ -173,8 +120,8 @@ public class GestureCreateActivity extends Activity {
         } else {
             setResult(RESULT_CANCELED);
         }
-
         finish();
+
     }
 
     public void cancelGesture(View v) {
@@ -210,6 +157,7 @@ public class GestureCreateActivity extends Activity {
     }
 
     public boolean isThereASimilarGesture(Gesture gesture) {
+
         final GestureLibrary store = GestureListActivity.getStore();
         ArrayList<Prediction> predictions = store.recognize(gesture);
 
@@ -222,7 +170,7 @@ public class GestureCreateActivity extends Activity {
         return false;
     }
 
-    public void pickShortcut() {
+    public void pickShortcut(View v) {
         Bundle bundle = new Bundle();
 
         ArrayList<String> shortcutNames = new ArrayList<String>();
@@ -242,29 +190,27 @@ public class GestureCreateActivity extends Activity {
         startActivityForResult(pickIntent, REQUEST_PICK_SHORTCUT);
     }
 
-    public void pickUnlockOnly() {
+    public void pickUnlockOnly(View v) {
         mFriendlyName = getString(R.string.gestures_unlock_only);
-        mDrawLabel.setText(getString(R.string.gestures_draw_for_label, mFriendlyName));
+        mShortcutButton.setText(mFriendlyName);
         mUri = mFriendlyName + "___UNLOCK";
-        disableCheckbox();
     }
 
-    public void pickSoundOnly() {
+    public void pickSoundOnly(View v) {
         mFriendlyName = getString(R.string.gestures_toggle_sound);
-        mDrawLabel.setText(getString(R.string.gestures_draw_for_label, mFriendlyName));
+        mShortcutButton.setText(mFriendlyName);
         mUri = mFriendlyName + "___SOUND";
-        disableCheckbox();
     }
 
-    public void pickFlashlight() {
+    public void pickFlashlight(View v) {
         mFriendlyName = getString(R.string.gestures_flashlight);
-        mDrawLabel.setText(getString(R.string.gestures_draw_for_label, mFriendlyName));
+        mShortcutButton.setText(mFriendlyName);
         mUri = mFriendlyName + "___FLASHLIGHT";
-        disableCheckbox();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_PICK_APPLICATION:
@@ -302,31 +248,17 @@ public class GestureCreateActivity extends Activity {
         if (mFriendlyName == null) {
             mFriendlyName = "null";
         }
-        mDrawLabel.setText(getString(R.string.gestures_draw_for_label, mFriendlyName));
+        mShortcutButton.setText(mFriendlyName);
         mUri = mFriendlyName + "___" + intent.toUri(0);
-        disableCheckbox();
     }
 
     void completeSetCustomApp(Intent data) {
-        PackageManager pm = getPackageManager();
-        mFriendlyName = data.getComponent().getPackageName();
-        if (mFriendlyName != null) {
-            try {
-                ApplicationInfo ai = pm.getApplicationInfo(mFriendlyName, PackageManager.GET_META_DATA);
-                mFriendlyName = (String) ai.loadLabel(pm);
-            } catch (NameNotFoundException e) {
-            }
-        }
+        mFriendlyName = data.toUri(0);
         if (mFriendlyName == null) {
             mFriendlyName = "null";
         }
-        mDrawLabel.setText(getString(R.string.gestures_draw_for_label, mFriendlyName));
+        mShortcutButton.setText(mFriendlyName);
         mUri = mFriendlyName + "___" + data.toUri(0);
-        mRunInBackground.setVisibility(View.VISIBLE);
     }
 
-    void disableCheckbox() {
-        mRunInBackground.setChecked(false);
-        mRunInBackground.setVisibility(View.GONE);
-    }
 }
