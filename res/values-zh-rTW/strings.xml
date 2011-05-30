@@ -543,6 +543,9 @@
     <string name="gestures_flashlight">手電筒開關</string>
     <string name="pref_lockscreen_disable_unlock_tab">隱藏解鎖道具</string>
     <string name="pref_lockscreen_disable_unlock_tab_summary">注意：要使用這個選項您必須先啟用軌跡球、Menu 鍵、或手勢解鎖。</string>
+    <string name="gestures_action_label">動作：</string>
+    <string name="gestures_draw_label">手勢：</string>
+    <string name="gestures_draw_for_label">“<xliff:g id="action">%s</xliff:g>”的手勢：</string>
     <string name="gestures_already_present">警告：一個相似的手勢經已關聯到另一個動作！</string>
     <string name="gestures_run_in_background">在背境運行</string>
 
