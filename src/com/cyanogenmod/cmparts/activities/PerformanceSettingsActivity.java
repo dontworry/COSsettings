@@ -107,6 +107,7 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
             return true;
         }
 
+        return false;  
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
