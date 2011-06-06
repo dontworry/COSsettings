@@ -57,13 +57,7 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
 
     private static final String HEAPSIZE_DEFAULT = "16m";
 
-    private static final String LOCK_MMS_PREF = "pref_lock_mms";
-
-    private static final int LOCK_MMS_DEFAULT = 0;
-
     private CheckBoxPreference mJitPref;
-
-    private CheckBoxPreference mLockMmsPref;
 
     private ListPreference mHeapsizePref;
 
@@ -91,10 +85,6 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
                 SystemProperties.get(HEAPSIZE_PROP, HEAPSIZE_DEFAULT)));
         mHeapsizePref.setOnPreferenceChangeListener(this);
 
-        mLockMmsPref = (CheckBoxPreference) prefSet.findPreference(LOCK_MMS_PREF);
-        mLockMmsPref.setChecked(Settings.System.getInt(getContentResolver(),
-                Settings.System.LOCK_MMS_IN_MEMORY, LOCK_MMS_DEFAULT) == 1);
-
         // Set up the warning
         alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle(R.string.performance_settings_warning_title);
@@ -117,13 +107,6 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
             return true;
         }
 
-        if (preference == mLockMmsPref) {
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.LOCK_MMS_IN_MEMORY, mLockMmsPref.isChecked() ? 1 : 0);
-            return true;
-        }
-
-        return false;
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
