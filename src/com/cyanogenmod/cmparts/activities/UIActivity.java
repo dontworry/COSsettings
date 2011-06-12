@@ -193,7 +193,6 @@ public class UIActivity extends PreferenceActivity implements OnPreferenceChange
             Settings.System.putInt(getContentResolver(), Settings.System.OVERSCROLL_WEIGHT,
                     overscrollWeight);
             return true;
-        }
         return false;
     }
 
