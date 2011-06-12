@@ -13,10 +13,16 @@
 				android:targetClass="com.cyanogenmod.cmparts.activities.TrackballNotificationActivity" />
 		</PreferenceScreen>
 
-                 <!-- 180 degree rotation toggle -->
-                <CheckBoxPreference android:key="pref_rotate_180"
-                 android:title="@string/pref_rotate_180_title"
-                 android:summary="@string/pref_rotate_180_summary" />
+       <!-- Rotation -->
+       <PreferenceCategory android:title="@string/rotation_category_title">
+           <CheckBoxPreference android:key="pref_rotation_90"
+               android:title="@string/pref_rotation_90_title" />
+           <CheckBoxPreference android:key="pref_rotation_180"
+               android:title="@string/pref_rotation_180_title" />
+           <CheckBoxPreference android:key="pref_rotation_270"
+            android:title="@string/pref_rotation_270_title" />
+       </PreferenceCategory>
+
 
 		<!-- Power prompt -->
 		<CheckBoxPreference android:key="power_dialog_prompt"
