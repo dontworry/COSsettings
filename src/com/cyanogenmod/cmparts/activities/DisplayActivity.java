@@ -47,7 +47,7 @@ public class DisplayActivity extends PreferenceActivity implements OnPreferenceC
         super.onCreate(savedInstanceState);
 
         setTitle(R.string.display_settings_title_subhead);
-        addPreferencesFromResource(R.xml.display_settings);
+        addPreferencesFromResource(R.xml.ui_settings);
 
         PreferenceScreen prefSet = getPreferenceScreen();
       
@@ -58,7 +58,7 @@ public class DisplayActivity extends PreferenceActivity implements OnPreferenceC
 	        int mode = Settings.System.getInt(getContentResolver(),
 	                        Settings.System.ACCELEROMETER_ROTATION_MODE, 5);
 	        mRotation90Pref.setChecked((mode & 1) != 0);
-0	        mRotation180Pref.setChecked((mode & 2) != 0);
+	        mRotation180Pref.setChecked((mode & 2) != 0);
 	        mRotation270Pref.setChecked((mode & 4) != 0);
     }
 
