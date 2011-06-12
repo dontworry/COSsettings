@@ -164,18 +164,14 @@ public class UIActivity extends PreferenceActivity implements OnPreferenceChange
             Settings.System.putInt(getContentResolver(), Settings.System.POWER_DIALOG_PROMPT,
                     value ? 1 : 0);
             return true;
-        }
-         else if (preference == mRotation90Pref ||
-            preference == mRotation180Pref ||
-            preference == mRotation270Pref) {
+        } else if (preference == mRotation90Pref || preference == mRotation180Pref || preference == mRotation270Pref) {
             int mode = 0;
-            if (mRotation90Pref.isChecked()) mode |= 1;
-            if (mRotation180Pref.isChecked()) mode |= 2;
-            if (mRotation270Pref.isChecked()) mode |= 4;
-            Settings.System.putInt(getContentResolver(),
-                     Settings.System.ACCELEROMETER_ROTATION_MODE, mode);
-        return true;
-        }
+                if (mRotation90Pref.isChecked()) mode |= 1;
+                if (mRotation180Pref.isChecked()) mode |= 2;
+                if (mRotation270Pref.isChecked()) mode |= 4;
+                    Settings.System.putInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION_MODE, mode);
+            return true;
+        } 
         return false;
     }
 
@@ -192,7 +188,8 @@ public class UIActivity extends PreferenceActivity implements OnPreferenceChange
             int overscrollWeight = Integer.valueOf((String) newValue);
             Settings.System.putInt(getContentResolver(), Settings.System.OVERSCROLL_WEIGHT,
                     overscrollWeight);
-            return true;
+            return true; 
+         }  
         return false;
     }
 
