@@ -13,6 +13,17 @@
 				android:targetClass="com.cyanogenmod.cmparts.activities.TrackballNotificationActivity" />
 		</PreferenceScreen>
 
+       <!-- Rotation -->
+       <PreferenceScreen android:title="@string/rotation_category_title">
+           <CheckBoxPreference android:key="pref_rotation_90"
+               android:title="@string/pref_rotation_90_title" />
+           <CheckBoxPreference android:key="pref_rotation_180"
+               android:title="@string/pref_rotation_180_title" />
+           <CheckBoxPreference android:key="pref_rotation_270"
+            android:title="@string/pref_rotation_270_title" />
+       </PreferenceScreen>
+
+
 		<!-- Power prompt -->
 		<CheckBoxPreference android:key="power_dialog_prompt"
 			android:title="@string/pref_power_prompt_title" android:summary="@string/pref_power_prompt_summary"
@@ -31,6 +42,15 @@
                 android:targetPackage="com.cyanogenmod.cmparts"
                 android:targetClass="com.cyanogenmod.cmparts.activities.UIStatusBarActivity" />
         </PreferenceScreen>
+
+                <!-- Tablet Tweaks -->
+                <PreferenceScreen android:key="tablet_settings"
+                      android:title="@string/tablet_tweaks_title_head"
+                      android:summary="@string/tablet_tweaks_summary_head">
+                     <intent android:action="android.intent.action.MAIN"
+                      android:targetPackage="com.cyanogenmod.cmparts"
+                      android:targetClass="com.cyanogenmod.cmparts.activities.TabletTweaksActivity" />
+                </PreferenceScreen>
 
 		<!-- Render effect -->
 		<ListPreference android:key="pref_render_effect"

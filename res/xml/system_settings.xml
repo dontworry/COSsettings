@@ -21,14 +21,6 @@
                 android:targetClass="com.cyanogenmod.updatenotify.MainActivity" />
         </PreferenceScreen>
 
-        <!-- Change Log -->
-        <PreferenceScreen android:key="changelog"
-            android:title="@string/changelog_title">
-            <intent android:action="android.intent.action.MAIN"
-                android:targetPackage="com.cyanogenmod.cmparts"
-                android:targetClass="com.cyanogenmod.cmparts.activities.ChangeLog" />
-        </PreferenceScreen>
-
     </PreferenceCategory>
 
 </PreferenceScreen>

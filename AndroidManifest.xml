@@ -79,13 +79,6 @@
                 <category android:name="com.cyanogenmod.cmparts.SHORTCUT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.DisplayActivity"
-            android:label="@string/display_settings_title_head">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="com.cyanogenmod.cmparts.SHORTCUT" />
-            </intent-filter>
-        </activity>
         <activity android:name=".activities.LockscreenActivity"
             android:label="@string/lockscreen_settings_title_head">
             <intent-filter>

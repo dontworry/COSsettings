@@ -62,6 +62,12 @@ public class UIActivity extends PreferenceActivity implements OnPreferenceChange
 
     private static final String OVERSCROLL_WEIGHT_PREF = "pref_overscroll_weight";
 
+    private static final String ROTATION_90_PREF = "pref_rotation_90";
+
+    private static final String ROTATION_180_PREF = "pref_rotation_180";
+
+    private static final String ROTATION_270_PREF = "pref_rotation_270";
+
     private CheckBoxPreference mPinchReflowPref;
 
     private CheckBoxPreference mPowerPromptPref;
@@ -71,6 +77,12 @@ public class UIActivity extends PreferenceActivity implements OnPreferenceChange
     private ListPreference mOverscrollPref;
 
     private ListPreference mOverscrollWeightPref;
+
+    private CheckBoxPreference mRotation90Pref;
+
+    private CheckBoxPreference mRotation180Pref;
+
+    private CheckBoxPreference mRotation270Pref;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -115,6 +127,15 @@ public class UIActivity extends PreferenceActivity implements OnPreferenceChange
         mOverscrollWeightPref.setValue(String.valueOf(overscrollWeight));
         mOverscrollWeightPref.setOnPreferenceChangeListener(this);
 
+        /* Rotate 180 */
+        mRotation90Pref = (CheckBoxPreference) prefSet.findPreference(ROTATION_90_PREF);
+        mRotation180Pref = (CheckBoxPreference) prefSet.findPreference(ROTATION_180_PREF);
+        mRotation270Pref = (CheckBoxPreference) prefSet.findPreference(ROTATION_270_PREF);
+        int mode = Settings.System.getInt(getContentResolver(),
+                        Settings.System.ACCELEROMETER_ROTATION_MODE, 5);
+        mRotation90Pref.setChecked((mode & 1) != 0);
+        mRotation180Pref.setChecked((mode & 2) != 0);
+        mRotation270Pref.setChecked((mode & 4) != 0);
     }
 
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
@@ -143,7 +164,14 @@ public class UIActivity extends PreferenceActivity implements OnPreferenceChange
             Settings.System.putInt(getContentResolver(), Settings.System.POWER_DIALOG_PROMPT,
                     value ? 1 : 0);
             return true;
-        }
+        } else if (preference == mRotation90Pref || preference == mRotation180Pref || preference == mRotation270Pref) {
+            int mode = 0;
+                if (mRotation90Pref.isChecked()) mode |= 1;
+                if (mRotation180Pref.isChecked()) mode |= 2;
+                if (mRotation270Pref.isChecked()) mode |= 4;
+                    Settings.System.putInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION_MODE, mode);
+            return true;
+        } 
         return false;
     }
 
@@ -160,8 +188,8 @@ public class UIActivity extends PreferenceActivity implements OnPreferenceChange
             int overscrollWeight = Integer.valueOf((String) newValue);
             Settings.System.putInt(getContentResolver(), Settings.System.OVERSCROLL_WEIGHT,
                     overscrollWeight);
-            return true;
-        }
+            return true; 
+         }  
         return false;
     }
 

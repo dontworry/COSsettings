@@ -2,12 +2,12 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Generic -->
-    <string name="app_name">CyanogenMod settings</string>
+    <string name="app_name">COS Settings</string>
 
     <!--  Primary Screen Settings -->
-    <string name="application_settings_title_head">Application</string>
-    <string name="application_settings_title_subhead">Application settings</string>
-    <string name="application_settings_summary_head">Application moving, install location, communication filtering</string>
+    <string name="application_settings_title_head">Misc</string>
+    <string name="application_settings_title_subhead">Misc settings</string>
+    <string name="application_settings_summary_head">Application moving, permissions, communication filtering, changelog</string>
     <string name="display_settings_title_head">Display</string>
     <string name="display_settings_title_subhead">Display settings</string>
     <string name="display_settings_summary_head">Display animations, rotation, timeouts</string>
@@ -85,9 +85,11 @@
     <string name="tablet_soft_buttons_search_title">Search</string>
     <string name="tablet_soft_buttons_quick_na_title">Quick notifications</string>
 
-    <!-- User interface : 180 degree rotation -->
-    <string name="pref_rotate_180_title">Rotate 180 degrees</string>
-    <string name="pref_rotate_180_summary">Allows additional 180 degree rotation when auto-rotate screen is activated</string>
+    <!-- User interface : Rotation -->
+    <string name="rotation_category_title">Accelerometer rotation</string>
+    <string name="pref_rotation_90_title">90 degrees</string>
+    <string name="pref_rotation_180_title">180 degrees</string>
+    <string name="pref_rotation_270_title">270 degrees</string>
 
     <!-- User interface: Status bar tweaks -->
     <string name="ui_status_bar_title">Status bar tweaks</string>
@@ -620,7 +622,7 @@
     <!-- Permissions Management Settings strings -->
     <string name="perm_enable_management">Permission management</string>
     <string name="perm_enable_management_summary">Enable application permissions management</string>
-    <string name="perm_enable_warning_message">Warning!\nRevoking most permissions will most likely cause applications to malfunction. If an application with revoked permissions force-closes please grant the expected permissions or don\'t use the application.\nPlease DO NOT send bug reports to Cyanogenmod if an application with revoked permissions is not working as expected!</string>
+    <string name="perm_enable_warning_message">Warning!\nRevoking most permissions will most likely cause applications to malfunction. If an application with revoked permissions force-closes please grant the expected permissions or don\'t use the application.\nPlease DO NOT send bug reports to COS if an application with revoked permissions is not working as expected!</string>
     <string name="perm_enable_warning_title">Are you sure?</string>
 
 </resources>

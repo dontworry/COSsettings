@@ -2,7 +2,7 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Generic -->
-    <string name="app_name">CyanogenMod 設定</string>
+    <string name="app_name">COS 設定</string>
 
     <!--  Primary Screen Settings -->
     <string name="application_settings_title_head">應用程式</string>
@@ -86,8 +86,6 @@
     <string name="tablet_soft_buttons_quick_na_title">快速通知</string>
 
     <!-- User interface : 180 degree rotation -->
-    <string name="pref_rotate_180_title">180 度旋轉</string>
-    <string name="pref_rotate_180_summary">在自動旋轉螢幕啟用時允許額外的 180 度旋轉</string>
 
     <!-- User interface: Status bar tweaks -->
     <string name="ui_status_bar_title">通知列調整</string>
@@ -101,6 +99,7 @@
     <string name="ui_status_bar_compact_carrier_summary">使用替代的下拉通知列格式，將電信業者名稱縮小顯示</string>
     <string name="ui_status_bar_toggle_brightness">通知列控制亮度</string>
     <string name="ui_status_bar_toggle_brightness_summary">允許在通知列上滑動來調整亮度</string>
+    <string name="ui_status_bar_toggle_info">自動亮度已啟用</string>
 
     <!-- User interface : LED Notifications -->
     <string name="trackball_title">LED 通知</string>
