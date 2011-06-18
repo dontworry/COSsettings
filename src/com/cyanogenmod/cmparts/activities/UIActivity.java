@@ -170,7 +170,7 @@ public class UIActivity extends PreferenceActivity implements OnPreferenceChange
             Settings.System.putInt(getContentResolver(), Settings.System.POWER_DIALOG_PROMPT,
                     value ? 1 : 0);
             return true;
-        } else if (preference == mRotation0Pref || mRotation90Pref || preference == mRotation180Pref || preference == mRotation270Pref) {
+        } else if (preference == mRotation0Pref || preference == mRotation90Pref || preference == mRotation180Pref || preference == mRotation270Pref) {
             int mode = 0;
                 if (mRotation0Pref.isChecked()) mode |= 8;
                 if (mRotation90Pref.isChecked()) mode |= 1;
