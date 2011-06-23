@@ -57,6 +57,22 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
 
     private static final String HEAPSIZE_DEFAULT = "16m";
 
+    private static final String USE_DITHERING_PREF = "pref_use_dithering";
+
+    private static final String USE_DITHERING_PERSIST_PROP = "persist.sys.use_dithering";
+    
+    private static final String USE_DITHERING_DEFAULT = "0";
+
+    private static final String PURGEABLE_ASSETS_PREF = "pref_purgeable_assets";
+
+    private static final String PURGEABLE_ASSETS_PERSIST_PROP = "persist.sys.purgeable_assets";
+
+    private static final String PURGEABLE_ASSETS_DEFAULT = "1";
+
+    private CheckBoxPreference mUseDitheringPref;
+
+    private CheckBoxPreference mPurgeableAssetsPref;
+
     private CheckBoxPreference mJitPref;
 
     private ListPreference mHeapsizePref;
@@ -79,6 +95,14 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
         String jitMode = SystemProperties.get(JIT_PERSIST_PROP,
                 SystemProperties.get(JIT_PROP, JIT_ENABLED));
         mJitPref.setChecked(JIT_ENABLED.equals(jitMode));
+
+        mUseDitheringPref = (CheckBoxPreference) prefSet.findPreference(USE_DITHERING_PREF);
+        String useDithering = SystemProperties.get(USE_DITHERING_PERSIST_PROP, USE_DITHERING_DEFAULT);
+        mUseDitheringPref.setChecked("1".equals(useDithering));
+
+        mPurgeableAssetsPref = (CheckBoxPreference) prefSet.findPreference(PURGEABLE_ASSETS_PREF);
+        String purgeableAssets = SystemProperties.get(PURGEABLE_ASSETS_PERSIST_PROP, PURGEABLE_ASSETS_DEFAULT);
+        mPurgeableAssetsPref.setChecked("1".equals(purgeableAssets));
 
         mHeapsizePref = (ListPreference) prefSet.findPreference(HEAPSIZE_PREF);
         mHeapsizePref.setValue(SystemProperties.get(HEAPSIZE_PERSIST_PROP,
@@ -104,6 +128,18 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
 	if (preference == mJitPref) {
             SystemProperties.set(JIT_PERSIST_PROP,
                     mJitPref.isChecked() ? JIT_ENABLED : JIT_DISABLED);
+            return true;
+        }
+
+        if (preference == mUseDitheringPref) {
+            SystemProperties.set(USE_DITHERING_PERSIST_PROP,
+                    mUseDitheringPref.isChecked() ? "1" : "0");
+            return true;
+        }
+
+        if (preference == mPurgeableAssetsPref) {
+            SystemProperties.set(PURGEABLE_ASSETS_PERSIST_PROP,
+                    mPurgeableAssetsPref.isChecked() ? "1" : "0");
             return true;
         }
 
