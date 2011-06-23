@@ -22,6 +22,15 @@
                     android:targetClass="com.cyanogenmod.cmparts.activities.PhoneGogglesActivity" />
         </Preference>
 
+        <!-- Display Settings -->
+        <PreferenceScreen android:key="display_settings"
+            android:title="@string/display_settings_title_head"
+            android:summary="@string/display_settings_summary_head">
+            <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="com.cyanogenmod.cmparts"
+            android:targetClass="com.cyanogenmod.cmparts.activities.DisplayActivity" />
+        </PreferenceScreen>
+
         <!-- Change Log -->
         <PreferenceScreen android:key="changelog"
             android:title="@string/changelog_title">
