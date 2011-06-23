@@ -61,13 +61,13 @@ public class PerformanceSettingsActivity extends PreferenceActivity implements P
 
     private static final String USE_DITHERING_PERSIST_PROP = "persist.sys.use_dithering";
     
-    private static final String USE_DITHERING_DEFAULT = "0";
+    private static final String USE_DITHERING_DEFAULT = "1";
 
     private static final String PURGEABLE_ASSETS_PREF = "pref_purgeable_assets";
 
     private static final String PURGEABLE_ASSETS_PERSIST_PROP = "persist.sys.purgeable_assets";
 
-    private static final String PURGEABLE_ASSETS_DEFAULT = "1";
+    private static final String PURGEABLE_ASSETS_DEFAULT = "0";
 
     private CheckBoxPreference mUseDitheringPref;
 
