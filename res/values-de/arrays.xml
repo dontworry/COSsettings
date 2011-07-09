@@ -258,7 +258,7 @@
         <item>Nichts</item>
         <item>Bildschirmtastatur</item>
         <item>Suche</item>
-        <item>Andere Anwendung</item>
+        <item>Eigene Anwendung</item>
         <item>Statusbar ein/aus</item>
     </string-array>
 </resources>
