@@ -255,13 +255,6 @@
 
     <!-- Long Press Menu -->
     <string name="long_press_menu_title">Menü-Taste</string>
-    <string name="long_press_menu_summary">Aktion für das gedrückt Halten der Menü-Taste anpassen</string>
-    <string name="pref_user_defined_long_press_menu_title">Wähle eigene Anwendung</string>
-    <string name="pref_long_press_menu_title">Wähle Aktion</string>
-    <string name="pref_long_press_menu_summary">Aktion beim gedrückt Halten der Menü-Taste anpassen</string>
-
-    <!-- Long Press Menu -->
-    <string name="long_press_menu_title">Menü-Taste</string>
     <string name="long_press_menu_summary">Aktion für das Gedrückt halten der Menü-Taste anpassen</string>
     <string name="pref_user_defined_long_press_menu_title">Wähle andere Anwendung</string>
     <string name="pref_long_press_menu_title">Wähle Aktion</string>
